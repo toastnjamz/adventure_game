@@ -12,14 +12,11 @@ namespace DungeonAdventure
         public Room CurrentRoom { get; set; }
         public bool IsRunning { get; private set; } = true;
 
-        public Action<string> OnErrorAction; //TODO
-
         public bool HasLocationToNorth
         {
             get
             {
-                return CurrentMap.RoomAt(CurrentRoom.XCoordinate,
-                CurrentRoom.YCoordinate + 1) != null;
+                return CurrentMap.RoomAt(CurrentRoom.XCoordinate, CurrentRoom.YCoordinate + 1) != null;
             }
         }
 
@@ -27,8 +24,7 @@ namespace DungeonAdventure
         {
             get
             {
-                return CurrentMap.RoomAt(CurrentRoom.XCoordinate + 1,
-                CurrentRoom.YCoordinate) != null;
+                return CurrentMap.RoomAt(CurrentRoom.XCoordinate + 1, CurrentRoom.YCoordinate) != null;
             }
         }
 
@@ -36,8 +32,7 @@ namespace DungeonAdventure
         {
             get
             {
-                return CurrentMap.RoomAt(CurrentRoom.XCoordinate,
-                CurrentRoom.YCoordinate - 1) != null;
+                return CurrentMap.RoomAt(CurrentRoom.XCoordinate, CurrentRoom.YCoordinate - 1) != null;
             }
         }
 
@@ -45,8 +40,7 @@ namespace DungeonAdventure
         {
             get
             {
-                return CurrentMap.RoomAt(CurrentRoom.XCoordinate - 1,
-                CurrentRoom.YCoordinate) != null;
+                return CurrentMap.RoomAt(CurrentRoom.XCoordinate - 1, CurrentRoom.YCoordinate) != null;
             }
         }
     }

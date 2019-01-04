@@ -65,15 +65,21 @@ namespace DungeonAdventure
 
         public IntroScreen(Player player)
         {
-            MenuItems = new Dictionary<string, Func<GameScreen>>  //TODO how to dynamically add menu items by room?
+			MenuItems = new Dictionary<string, Func<GameScreen>>();  //TODO how to dynamically add menu items by room?
 
         }
-    }
 
-    private GameScreen Intro()
-    {
-        //TODO 
-    }
+		public override GameScreen Run()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	//private GameScreen Intro()
+  //  {
+		////TODO 
+		//return null;
+    //}
 
     // public HUD view << Nested in main game view
 

@@ -7,7 +7,9 @@ namespace DungeonAdventure
     /// </summary>
     public class App
     {
-        public static int Main(string[] args)
+		ConsoleView _view;
+
+		public static int Main(string[] args)
         {
             App app = new App();
             app.Run();
@@ -16,30 +18,47 @@ namespace DungeonAdventure
 
         public void Run()
         {
-            // TODO Initialize MVC here
+			_view = new ConsoleView();
 
-            GameController gameController = new GameController();
+			// TODO Initialize MVC here
 
-            GameModel gameModel = new GameModel();
+			GameModel gameModel = new GameModel();
+			GameController gameController = new GameController(gameModel);
+			gameController.OnErrorAction += OnError;
+			gameController.OnGameEvent += OnGameEvent;
 
-            gameModel.OnErrorAction = OnError; //TODO
-
-            while (gameController.IsRunning)
+			// application pump
+			while (gameController.IsRunning)
             {
-                gameController.TestGame(); //TODO remove test method
-            }
+				_view.Display();
+				try
+				{
+					var input = _view.WaitForInput();
+					gameController.HandleInput(input);
+				}
+				catch (Exception e)
+				{
+					_view.ShowError(e.Message);
+				}
+			}
         }
 
-        void OnError(string errorName)
+		void OnGameEvent(GameEvent gameEvent)
+		{
+			_view.ShowGameEvent(gameEvent);
+		}
+
+		void OnError(string errorName)
         {
-            //TODO
-        }
+			//TODO
+			_view.ShowError(errorName);
+		}
 
-        /* Do all these go here?
+		/* Do all these go here?
          * TODO: add map movement event funcitons
          * private void OnMoveNorth(object source, EventArgs e)
             {
                 game.MoveNorth(); etc.
             }*/
-    }
+	}
 }
