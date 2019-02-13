@@ -10,6 +10,7 @@ namespace AdventureGame
         public string Name { get; set; }
         public string Description { get; set; }
         public Item ItemRequiredToEnter { get; set; }
+        //public Item ItemInside { get; set; }
 
         // TODO public List<EnemyEncounter> EnemiesHere { get; } =
         // TODO new List<EnemyEncounter>();

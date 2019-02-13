@@ -26,7 +26,7 @@ namespace AdventureGame
             _gameController = new GameController(_gameLogic, _view);
 
             // Controller signals to view to show initial setup text
-            _gameController.Start();
+            _gameController.StartGame();
 
             // Application pump
             while (_gameController.IsRunning)

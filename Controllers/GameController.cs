@@ -36,7 +36,7 @@ namespace AdventureGame
             CurrentPlayer.PlayerKilled += HandlePlayerKilled;
         }
 
-        public void Start()
+        public void StartGame()
         {
             GameIntro.WriteAsciiTitle();
             GameIntro.IntroText();
@@ -114,6 +114,13 @@ namespace AdventureGame
         private void HandleInventoryInput(InventoryInput input)
         {
             _view.DisplayInventory(CurrentPlayer);
+        }
+
+        public Item DoesItemExistInRoom(Item item)
+        {
+            //TODO
+            if (CurrentRoom.)
+            return item;
         }
 
         void OnGameEvent(GameEvent gameEvent)
