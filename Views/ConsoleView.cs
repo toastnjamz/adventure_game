@@ -23,19 +23,16 @@ namespace AdventureGame
 					break;
 
                 case InputType.STATS:
-                    //TODO display the player's stats
-                    break;
+                    return new StatsInput();
 
                 case InputType.LOOK:
                     return new LookAtInput();
                 
                 case InputType.TAKE:
-                    //TODO add item to inventory
-                    break;
+                    return new TakeInput();
                 
                 case InputType.INVENTORY:
-                    //TODO return list of inventory items
-                    break;
+                    return new InventoryInput();
                 
                 case InputType.ATTACK:
                     //TODO
@@ -79,9 +76,25 @@ namespace AdventureGame
         }
 
         // Describes the payer's current room
-        public void DescribeRoom(Room room)
+        public void DescribeCurrentRoom(Room room)
         {
             Console.WriteLine("This room..." + room.Description);
+        }
+
+        // Prints the player's current stats
+        public void DisplayPlayerStats(Player CurrentPlayer)
+        {
+            Console.WriteLine("Current hit points: {0}", CurrentPlayer.CurrentHitPoints);
+            Console.WriteLine("Maximum hit points: {0}", CurrentPlayer.MaxHitPoints);
+            Console.WriteLine("Experience points: {0}", CurrentPlayer.ExperiencePoints);
+            Console.WriteLine("Level: {0}", CurrentPlayer.Level);
+        }
+
+        // Displays the player's current inventory items
+        public void DisplayInventory(Player CurrentPlayer)
+        {
+            foreach (Item item in CurrentPlayer.Inventory)
+                Console.WriteLine(item.Name);
         }
 
         // Displays help menu
@@ -105,10 +118,14 @@ namespace AdventureGame
 			if (gameEvent is MoveGameEvent moveGameEvent)
 			{
 				Console.WriteLine("Player moved from " + moveGameEvent.OldRoom.Name + " to " + moveGameEvent.NewRoom.Name);
-				DescribeRoom(moveGameEvent.NewRoom);
+				DescribeCurrentRoom(moveGameEvent.NewRoom);
 			}
+            else if (gameEvent is TakeGameEvent takeGameEvent)
+            {
+                Console.WriteLine("You've added a {0} to your inventory.", takeGameEvent.Item);
+            }
             // else TODO: add display results for other games events
-		}
+        }
 
 		public void ShowError(string error)
 		{

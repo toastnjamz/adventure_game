@@ -9,24 +9,26 @@ namespace AdventureGame
         public string Name { get; set; }
         public string NamePlural { get; set; }
         public string Description { get; set; }
+        public int Quantity { get; set; }
 
-        public Item(int iD, string name, string namePlural, string description)
+        public Item(int iD, string name, string namePlural, string description, int quantity)
         {
-            this.ID = iD;
-            this.Name = name;
-            this.NamePlural = namePlural;
-            this.Description = description;
+            ID = iD;
+            Name = name;
+            NamePlural = namePlural;
+            Description = description;
+            Quantity = quantity;
         }
 
-        public void PerformAction(Player source, Enemy target)
-        {
-            Action?.Execute(source, target);
-        }
+        //public void PerformAction(Player source, Enemy target)
+        //{
+        //    Action?.Execute(source, target);
+        //}
 
         // Lets the CreateItem function in the ItemFactory class make new instances of items
         public Item Clone()
         {
-            return new Item(ID, Name, NamePlural, Description);
+            return new Item(ID, Name, NamePlural, Description, Quantity);
         }
     }
 }

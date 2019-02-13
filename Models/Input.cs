@@ -34,6 +34,11 @@ namespace AdventureGame
 		}
 	}
 
+    public class StatsInput : Input
+    {
+        public StatsInput() : base(InputType.STATS) { }
+    }
+
     public class LookAtInput : Input
     {
         public Room Room { get; private set; }
@@ -50,6 +55,22 @@ namespace AdventureGame
         }
 
         public LookAtInput() : base(InputType.LOOK) { }
+    }
+
+    public class TakeInput : Input
+    {
+        public Item Item { get; private set; }
+
+        public TakeInput(Item item) : base(InputType.TAKE) 
+        {
+            Item = item;
+        }
+        public TakeInput() : base(InputType.TAKE) { }
+    }
+
+    public class InventoryInput : Input
+    {
+        public InventoryInput() : base(InputType.INVENTORY) { }
     }
 
     public class ExitInput : Input

@@ -688,11 +688,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/veritydavis/Downloads/adventure_game_20190210/AdventureGame.csproj",
+      "projectUniqueName": "/Users/veritydavis/Projects/adventure_game_20190210/AdventureGame.csproj",
       "projectName": "AdventureGame",
-      "projectPath": "/Users/veritydavis/Downloads/adventure_game_20190210/AdventureGame.csproj",
+      "projectPath": "/Users/veritydavis/Projects/adventure_game_20190210/AdventureGame.csproj",
       "packagesPath": "/Users/veritydavis/.nuget/packages/",
-      "outputPath": "/Users/veritydavis/Downloads/adventure_game_20190210/obj",
+      "outputPath": "/Users/veritydavis/Projects/adventure_game_20190210/obj",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"

@@ -1,16 +1,20 @@
 ﻿<Properties StartupConfiguration="{3C31BD8A-C6E0-4302-863E-AD4738185E08}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Models/Player.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Models/Event/MoveGameEvent.cs">
     <Files>
-      <File FileName="Controllers/App.cs" Line="10" Column="38" />
-      <File FileName="Controllers/GameController.cs" Line="4" Column="24" />
-      <File FileName="Models/GameLogic.cs" Line="3" Column="24" />
-      <File FileName="Models/Input.cs" Line="2" Column="1" />
-      <File FileName="Models/Room.cs" Line="3" Column="24" />
+      <File FileName="Models/GameLogic.cs" Line="59" Column="35" />
+      <File FileName="Controllers/GameController.cs" Line="111" Column="19" />
+      <File FileName="Views/ConsoleView.cs" Line="121" Column="3" />
+      <File FileName="Models/Input.cs" Line="24" Column="4" />
+      <File FileName="Models/Room.cs" Line="12" Column="21" />
       <File FileName="Models/Map.cs" Line="4" Column="24" />
-      <File FileName="Factories/MapFactory.cs" Line="3" Column="24" />
-      <File FileName="Factories/ItemFactory.cs" Line="5" Column="24" />
-      <File FileName="Models/CharacterClass.cs" Line="3" Column="24" />
-      <File FileName="Models/Player.cs" Line="5" Column="24" />
+      <File FileName="Factories/MapFactory.cs" Line="11" Column="13" />
+      <File FileName="Factories/ItemFactory.cs" Line="11" Column="9" />
+      <File FileName="Models/Player.cs" Line="78" Column="15" />
+      <File FileName="Models/Item.cs" Line="35" Column="1" />
+      <File FileName="Models/Weapon.cs" Line="25" Column="2" />
+      <File FileName="Models/Event/GameEvent.cs" Line="1" Column="1" />
+      <File FileName="Models/Event/TakeGameEvent.cs" Line="11" Column="25" />
+      <File FileName="Models/Event/MoveGameEvent.cs" Line="3" Column="8" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

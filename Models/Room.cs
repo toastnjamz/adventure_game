@@ -10,12 +10,12 @@ namespace AdventureGame
         public string Name { get; set; }
         public string Description { get; set; }
         public Item ItemRequiredToEnter { get; set; }
-        //public bool DoesNotRequireItem { get { return ItemRequiredToEnter == null; } }
 
         // TODO public List<EnemyEncounter> EnemiesHere { get; }
         // TODO new List<EnemyEncounter>();
 
-        public Room(int xCoordinate, int yCoordinate, string name, string description, Item itemRequiredToEnter)
+        public Room(int xCoordinate, int yCoordinate, string name, string description, 
+            Item itemRequiredToEnter = null)
         {
             XCoordinate = xCoordinate;
             YCoordinate = yCoordinate;

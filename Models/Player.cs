@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace AdventureGame
@@ -43,7 +44,7 @@ namespace AdventureGame
         public int MaxHitPoints { get; private set; }
         public Room CurrentRoom { get; private set; }
         public CharacterClass CharacterClass { get; private set; } //TODO
-        public ObservableCollection<Item> Inventory { get; set; } //TODO: Change back to private set later
+        public List<Item> Inventory { get; set; } //TODO: Change back to private set later
         //public event EventHandler LeveledUp;
         public event EventHandler PlayerKilled;
 
@@ -54,7 +55,7 @@ namespace AdventureGame
             CurrentHitPoints = currentHitPoints;
             MaxHitPoints = maxHitPoints;
             CurrentRoom = currentRoom;
-            Inventory = new ObservableCollection<Item>();
+            Inventory = new List<Item>();
         }
 
         public void AddExperience(int experiencePoints)
@@ -72,6 +73,11 @@ namespace AdventureGame
                 MaxHitPoints = Level * 10;
                 //OnLeveledUp();
             }
+        }
+
+        public bool DoesNotHaveItemToEnter(Room room)
+        {
+            return !HasItemToEnter(room);
         }
 
         public void TakeDamage (int hitPointsDealt)

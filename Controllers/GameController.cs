@@ -55,11 +55,25 @@ namespace AdventureGame
 					HandleMoveInput(input as MoveInput); //TODO if conversion fails, show null?
 					break;
 
+                case InputType.STATS:
+                    HandleStatsInput(input as StatsInput);
+                    break;
+
                 case InputType.LOOK:
                     HandleLookInput(input as LookAtInput);
                     break;
 
-                //TODO: add the rest of the passable Types from the InputType enum list
+                case InputType.TAKE:
+                    HandleTakeInput(input as TakeInput);
+                    break;
+
+                case InputType.INVENTORY:
+                    HandleInventoryInput(input as InventoryInput);
+                    break;
+
+                case InputType.ATTACK:
+                    //TODO
+                    break;
 
                 case InputType.EXIT:
                     Console.WriteLine("Beat it, geek!");
@@ -81,12 +95,25 @@ namespace AdventureGame
                 _view.ShowError("Value not found.");
         }
 
-        // TODO: add map movement event funcitons (do I have to?)
-
-        // TODO: Add LookAt Item 
+        // TODO: Add LookAt Item
         private void HandleLookInput(LookAtInput input)
         {
-            _view.DescribeRoom(CurrentRoom);
+            _view.DescribeCurrentRoom(CurrentRoom);
+        }
+
+        private void HandleStatsInput(StatsInput input)
+        {
+            _view.DisplayPlayerStats(CurrentPlayer);
+        }
+
+        private void HandleTakeInput(TakeInput input)
+        {
+            //TODO
+        }
+
+        private void HandleInventoryInput(InventoryInput input)
+        {
+            _view.DisplayInventory(CurrentPlayer);
         }
 
         void OnGameEvent(GameEvent gameEvent)

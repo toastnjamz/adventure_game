@@ -37,9 +37,9 @@ namespace AdventureGame
             CurrentPlayer.Inventory.Add(ItemFactory.CreateItem(1001)); //TODO remove test item
         }
 
-        // TODO refactor
         // Movement methods use the player's CurrentRoom X and Y coordinates
         // Add or subtract 1 based on X or Y direction
+        // TODO refactor
         public void MoveNorth()
         {
             if (HasLocationToNorth)
@@ -70,11 +70,15 @@ namespace AdventureGame
 
         public void MoveSouth()
         {
-            if (HasLocationToSouth)
+            if (HasLocationToNorth && CurrentPlayer.HasItemToEnter(CurrentRoom))
             {
                 var oldRoom = CurrentRoom;
                 CurrentRoom = CurrentMap.RoomAt(CurrentRoom.XCoordinate, CurrentRoom.YCoordinate - 1);
                 OnGameEvent?.Invoke(new MoveGameEvent(oldRoom, CurrentRoom));
+            }
+            else if (CurrentPlayer.DoesNotHaveItemToEnter(CurrentRoom))
+            {
+                Console.WriteLine("You need a {0} to enter this location.", CurrentRoom.ItemRequiredToEnter);
             }
             else
             {
@@ -95,5 +99,7 @@ namespace AdventureGame
                 OnErrorAction?.Invoke("You can't move West.");
             }
         }
+
+        //TODO add TakeGameEvent and take item logic here?
     }
 }
