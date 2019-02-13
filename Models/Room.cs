@@ -11,7 +11,7 @@ namespace AdventureGame
         public string Description { get; set; }
         public Item ItemRequiredToEnter { get; set; }
 
-        // TODO public List<EnemyEncounter> EnemiesHere { get; }
+        // TODO public List<EnemyEncounter> EnemiesHere { get; } =
         // TODO new List<EnemyEncounter>();
 
         public Room(int xCoordinate, int yCoordinate, string name, string description, 

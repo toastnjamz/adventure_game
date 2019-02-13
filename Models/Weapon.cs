@@ -12,8 +12,8 @@ namespace AdventureGame
         int minDamage, int maxDamage)
             : base(itemID, name, namePlural, description, quantity)
         {
-            this.MinDamage = minDamage;
-            this.MaxDamage = maxDamage;
+            MinDamage = minDamage;
+            MaxDamage = maxDamage;
         }
 
         // Lets the CreateItem function in the ItemCreator class make new instances of weapon items
@@ -21,5 +21,10 @@ namespace AdventureGame
         {
             return new Weapon(ID, Name, NamePlural, Description, Quantity, MinDamage, MaxDamage);
         }
+
+        //public void PerformAction(Player source, Enemy target)
+        //{
+        //    Action?.Execute(source, target);
+        //}
     }
 }

@@ -4,9 +4,23 @@ using System.Linq;
 
 namespace AdventureGame
 {
-    // Static factory class creates an item and does not change after creation
+    // Static factory class creates a list of items and does not change after creation
     public static class ItemFactory
     {
+        //private static Dictionary<string, Item> _items;
+
+        //static ItemFactory()
+        //{
+        //    Item DungeonDirt = new Item(001, "Dungeon Dirt", "Dungeon Dirt", "Nothing special.", 1);
+        //    Weapon BattleAxe = new Weapon(1001, "Battle Axe", "Battle Axes", "Tempered, trusty.", 1, 5, 2);
+
+        //    _items = new Dictionary<string, Item>
+        //    {
+        //        _items.Add(DungeonDirt.Name, DungeonDirt),
+        //        _items.Add(BattleAxe.Name, BattleAxe)
+        //    };
+        //}
+
         private static List<Item> _items;
 
         static ItemFactory()

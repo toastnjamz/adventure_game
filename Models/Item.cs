@@ -20,11 +20,6 @@ namespace AdventureGame
             Quantity = quantity;
         }
 
-        //public void PerformAction(Player source, Enemy target)
-        //{
-        //    Action?.Execute(source, target);
-        //}
-
         // Lets the CreateItem function in the ItemFactory class make new instances of items
         public Item Clone()
         {

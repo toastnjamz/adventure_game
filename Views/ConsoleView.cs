@@ -25,12 +25,20 @@ namespace AdventureGame
                 case InputType.STATS:
                     return new StatsInput();
 
+                // TODO create a dictionary of all items in the game?
                 case InputType.LOOK:
                     return new LookAtInput();
                 
                 case InputType.TAKE:
+                    //if (tokens.Length > 1)
+                    //{
+                    //    var item = list.Find(x => x.Name == )
+                    //    return new TakeInput(item);
+                    //}
+                    //ShowError("Invalid item input.");
+                    //break;
                     return new TakeInput();
-                
+
                 case InputType.INVENTORY:
                     return new InventoryInput();
                 
@@ -64,7 +72,7 @@ namespace AdventureGame
 		}
 
         // User prompt
-		public void Display()
+        public void Display()
 		{
 			Console.Write("$ ");
 		}
