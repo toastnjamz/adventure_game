@@ -1,0 +1,23 @@
+﻿<Properties StartupConfiguration="{3C31BD8A-C6E0-4302-863E-AD4738185E08}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Factories/ItemFactory.cs">
+    <Files>
+      <File FileName="Models/GameLogic.cs" Line="81" Column="61" />
+      <File FileName="Controllers/GameController.cs" Line="39" Column="30" />
+      <File FileName="Views/ConsoleView.cs" Line="31" Column="17" />
+      <File FileName="Models/Input.cs" Line="68" Column="9" />
+      <File FileName="Models/Room.cs" Line="16" Column="9" />
+      <File FileName="Models/Map.cs" Line="4" Column="24" />
+      <File FileName="Factories/MapFactory.cs" Line="11" Column="1" />
+      <File FileName="Models/Player.cs" Line="78" Column="15" />
+      <File FileName="Factories/ItemFactory.cs" Line="24" Column="41" />
+      <File FileName="Models/Item.cs" Line="21" Column="10" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.AdventureGame PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>
