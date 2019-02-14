@@ -29,15 +29,15 @@ namespace AdventureGame
                     return new LookAtInput();
                 
                 case InputType.TAKE:
-                    if (tokens.Length > 1)
-                    {
-                        var input = tokens[1];
-                        var item = GameController.DoesItemExistInRoom(input);
-                        return new TakeInput(item);
-                    }
-                    ShowError("Invalid item input.");
-                    break;
-                    //return new TakeInput();
+                    //if (tokens.Length > 1)
+                    //{
+                    //    var input = tokens[1];
+                    //    var item = GameController.DoesItemExistInRoom(input);
+                    //    return new TakeInput(item);
+                    //}
+                    //ShowError("Invalid item input.");
+                    //break;
+                    return new TakeInput();
 
                 case InputType.INVENTORY:
                     return new InventoryInput();

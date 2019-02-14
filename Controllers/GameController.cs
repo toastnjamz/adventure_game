@@ -116,11 +116,13 @@ namespace AdventureGame
             _view.DisplayInventory(CurrentPlayer);
         }
 
-        public Item DoesItemExistInRoom(Item item)
+        public string DoesItemExistInRoom(string input)
         {
             //TODO
-            if (CurrentRoom.)
-            return item;
+            //if (CurrentRoom.)
+            //return item;
+            //else (return null;)
+            return string.Empty;
         }
 
         void OnGameEvent(GameEvent gameEvent)
