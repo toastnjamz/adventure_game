@@ -16,8 +16,8 @@ namespace AdventureGame
 
         //    _items = new Dictionary<string, Item>
         //    {
-        //        _items.Add(DungeonDirt.Name, DungeonDirt),
-        //        _items.Add(BattleAxe.Name, BattleAxe)
+        //        { DungeonDirt.Name, DungeonDirt },
+        //        { BattleAxe.Name, BattleAxe }
         //    };
         //}
 

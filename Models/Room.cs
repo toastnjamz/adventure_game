@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace AdventureGame
 {
@@ -10,7 +11,7 @@ namespace AdventureGame
         public string Name { get; set; }
         public string Description { get; set; }
         public Item ItemRequiredToEnter { get; set; }
-        //public Item ItemInside { get; set; }
+        public List<Item> Inventory { get; set; }
 
         // TODO public List<EnemyEncounter> EnemiesHere { get; } =
         // TODO new List<EnemyEncounter>();
@@ -23,6 +24,8 @@ namespace AdventureGame
             Name = name;
             Description = description;
             ItemRequiredToEnter = itemRequiredToEnter;
+
+            Inventory = new List<Item>();
         }
     }
 }
