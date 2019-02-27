@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AdventureGame
 {
@@ -76,6 +77,7 @@ namespace AdventureGame
                     break;
 
                 case InputType.EXIT:
+                    // I admit this is lazy. Assuming console output like this should go to the view?
                     Console.WriteLine("Beat it, geek!");
                     IsRunning = false;
                     break;
@@ -87,7 +89,7 @@ namespace AdventureGame
 		}
 
         // Takes user movement input from the View and translates into movement action
-        void HandleMoveInput(MoveInput input)
+        private void HandleMoveInput(MoveInput input)
         {
             if (_directionHandlers.TryGetValue(input.Direction, out var action))
                 action?.Invoke();
@@ -95,10 +97,22 @@ namespace AdventureGame
                 _view.ShowError("Value not found.");
         }
 
-        // TODO: Add LookAt Item
+        // Describes the room or an item in the room depending on what the player enters
         private void HandleLookInput(LookAtInput input)
         {
-            _view.DescribeCurrentRoom(CurrentRoom);
+            if (input.LookInput == "Room" || input.LookInput == "room")
+            {
+                _view.DescribeCurrentRoom(CurrentRoom);
+            }
+            else if (CurrentRoom.RoomInventory.Exists(x => x.Name == input.LookInput))
+            {
+                Item targetItem = CurrentRoom.RoomInventory.First(x => x.Name == input.LookInput);
+                _view.DescribeItem(targetItem);
+            }
+            else
+            {
+                _view.ShowError("That item doesn't exist here.");
+            }
         }
 
         private void HandleStatsInput(StatsInput input)
@@ -108,7 +122,16 @@ namespace AdventureGame
 
         private void HandleTakeInput(TakeInput input)
         {
-            //TODO
+            if (CurrentRoom.RoomInventory.Exists(x => x.Name == input.ItemName))
+            {
+                Item targetItem = CurrentRoom.RoomInventory.First(x => x.Name == input.ItemName);
+                CurrentRoom.RemoveItemFromRoomInventory(targetItem);
+                CurrentPlayer.AddItemToInventory(targetItem);
+            }
+            else
+            {
+                _view.ShowError("That item doesn't exist here.");
+            }
         }
 
         private void HandleInventoryInput(InventoryInput input)
@@ -116,13 +139,17 @@ namespace AdventureGame
             _view.DisplayInventory(CurrentPlayer);
         }
 
-        public string DoesItemExistInRoom(string input)
+        public Item DoesItemExistInRoom(string input)
         {
-            //TODO
-            //if (CurrentRoom.)
-            //return item;
-            //else (return null;)
-            return string.Empty;
+            if (CurrentRoom.RoomInventory.Exists(x => x.Name == input))
+            {
+                 return CurrentRoom.RoomInventory.FirstOrDefault(x => x.Name == input);
+            }
+            else
+            {
+                _view.ShowError("That item doesn't exist here.");
+                return null;
+            }
         }
 
         void OnGameEvent(GameEvent gameEvent)

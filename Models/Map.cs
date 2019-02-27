@@ -8,9 +8,11 @@ namespace AdventureGame
     {
         private readonly List<Room> _rooms = new List<Room>();
 
-        internal void AddRoom(int xCoordinate, int yCoordinate, string name, string description, Item itemRequiredToEnter)
+        internal void AddRoom(int xCoordinate, int yCoordinate, string name, string description, 
+            Item itemRequiredToEnter, params Item[] RoomItems)
         {
-            _rooms.Add(new Room(xCoordinate, yCoordinate, name, description, itemRequiredToEnter));
+            _rooms.Add(new Room(xCoordinate, yCoordinate, name, description, 
+                itemRequiredToEnter, RoomItems));
         }
 
         // Returns Room object if the room matches the set of coordinates

@@ -4,8 +4,6 @@ namespace AdventureGame
 {
     /// <summary>
     /// Main game rules engine / logic
-    /// NOTE: I feel like this is a weird class (it's like a master model class that groups the models and initializes them).
-    /// rules engine (rename to)
     /// </summary>
     public class GameLogic
     {
@@ -28,6 +26,7 @@ namespace AdventureGame
         public bool HasLocationToWest =>
             CurrentMap.RoomAt(CurrentRoom.XCoordinate - 1, CurrentRoom.YCoordinate) != null;
 
+        //TODO does this really go here? Should it be in its own controller?
         public GameLogic()
         {
             CurrentMap = MapFactory.CreateMap();

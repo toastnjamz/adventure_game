@@ -45,6 +45,7 @@ namespace AdventureGame
         public Room CurrentRoom { get; private set; }
         public CharacterClass CharacterClass { get; private set; } //TODO
         public List<Item> Inventory { get; set; } //TODO: Change back to private set later
+
         //public event EventHandler LeveledUp;
         public event EventHandler PlayerKilled;
 
@@ -88,6 +89,7 @@ namespace AdventureGame
         public void AddItemToInventory(Item item)
         {
             Inventory.Add(item);
+            Console.WriteLine("{0} item was added to your inventory.", item.Name); //TODO remove test
         }
 
         public void RemoveItemFromInventory(Item item)

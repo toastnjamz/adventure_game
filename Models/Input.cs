@@ -28,7 +28,8 @@ namespace AdventureGame
 	{
 		public Direction Direction { get; private set; }
 
-		public MoveInput(Direction direction) : base(InputType.GO) // Calling base class constructor and passing InputType.Go as an arguement to initialize the field
+        // Calling base class constructor and passing InputType.Go as an arguement to initialize the field
+        public MoveInput(Direction direction) : base(InputType.GO)
 		{
 			Direction = direction;
 		}
@@ -41,31 +42,22 @@ namespace AdventureGame
 
     public class LookAtInput : Input
     {
-        public Room Room { get; private set; }
-        public Item Item { get; private set; }
+        public string LookInput { get; private set; }
 
-        public LookAtInput(Room room) : base(InputType.LOOK)
+        public LookAtInput(string lookInput) : base(InputType.LOOK)
         {
-            Room = room;
+            LookInput = lookInput;
         }
-
-        public LookAtInput(Item item) : base(InputType.LOOK)
-        {
-            Item = item;
-        }
-
-        public LookAtInput() : base(InputType.LOOK) { }
     }
 
     public class TakeInput : Input
     {
-        public Item Item { get; private set; }
+        public string ItemName { get; private set; }
 
-        public TakeInput(Item item) : base(InputType.TAKE) 
+        public TakeInput(string itemName) : base(InputType.TAKE)
         {
-            Item = item;
+            ItemName = itemName;
         }
-        public TakeInput() : base(InputType.TAKE) { }
     }
 
     public class InventoryInput : Input
@@ -77,13 +69,4 @@ namespace AdventureGame
     {
         public ExitInput() : base(InputType.EXIT) { }
     }
-
-    /* TODO add a class for each action in the InputType enum list to be passed to the controller to handle
-     * Stats: display the playe's current stats   
-     * Look without item arguement: describe the current room   
-     * Look with item arguement: pass in the item as an arguement, return (or simply print) the item description
-     * Take: add the item to the player's inventory (later: remove from the room)
-     * Inventory: print out the player's inventory items    
-     * Attack: TBD
-     */
 }

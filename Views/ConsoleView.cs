@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace AdventureGame
 {
@@ -17,7 +18,7 @@ namespace AdventureGame
 					if (tokens.Length > 1)
 					{
 						var direction = InputStringToEnum<Direction>(tokens[1]);
-                        return new MoveInput(direction); //TODO: is it ok to just use new keyword here and not have a named instance of the class?
+                        return new MoveInput(direction);
 					}
 					ShowError("Missing direction parameter.");
 					break;
@@ -26,18 +27,24 @@ namespace AdventureGame
                     return new StatsInput();
 
                 case InputType.LOOK:
-                    return new LookAtInput();
+                    if (tokens.Length > 1)
+                    {
+                        //TODO to upper or lower
+                        string lookInput = string.Join(" ", tokens.Skip(2));
+                        return new LookAtInput(lookInput);
+                    }
+                    ShowError("Invalid look at input. What do you want to look at?");
+                    break;
                 
                 case InputType.TAKE:
-                    //if (tokens.Length > 1)
-                    //{
-                    //    var input = tokens[1];
-                    //    var item = GameController.DoesItemExistInRoom(input);
-                    //    return new TakeInput(item);
-                    //}
-                    //ShowError("Invalid item input.");
-                    //break;
-                    return new TakeInput();
+                    if (tokens.Length > 1)
+                    {
+                        //TODO to upper or lower
+                        string itemName = string.Join(" ", tokens.Skip(1));
+                        return new TakeInput(itemName);
+                    }
+                    ShowError("Invalid item input.");
+                    break;
 
                 case InputType.INVENTORY:
                     return new InventoryInput();
@@ -86,7 +93,21 @@ namespace AdventureGame
         // Describes the payer's current room
         public void DescribeCurrentRoom(Room room)
         {
-            Console.WriteLine("This room..." + room.Description);
+            Console.WriteLine("You're in " + room.Description);
+            if (room.RoomInventory.Count != 0)
+            {
+                foreach (Item item in room.RoomInventory)
+                {
+                    Console.WriteLine("You see {0}.", item.Name);
+                    //TODO Use different string for one or multiple items: "You also see a..."
+                }
+            }
+        }
+
+        // Describes a target item
+        public void DescribeItem(Item item)
+        {
+            Console.WriteLine(item.Description);
         }
 
         // Prints the player's current stats
@@ -114,7 +135,8 @@ namespace AdventureGame
             Console.WriteLine("Go South - Move South");
             Console.WriteLine("Go East - Move East");
             Console.WriteLine("Go West - Move West");
-            Console.WriteLine("Look - Get a description of your current location");
+            Console.WriteLine("Look at Room - Get a description of your current location");
+            Console.WriteLine("Look at [item] - Get a description of your current location");
             Console.WriteLine("Take - Pick up item");
             Console.WriteLine("Inventory - Display your inventory");
             Console.WriteLine("Attack - Fight monster");
