@@ -32,8 +32,6 @@ namespace AdventureGame
             CurrentMap = MapFactory.CreateMap();
             CurrentRoom = CurrentMap.RoomAt(0, 2);
             CurrentPlayer = new Player("Thorin", 10, 10, CurrentRoom); //TODO remove test arguements
-            CurrentPlayer.Inventory.Add(ItemFactory.CreateItem(001)); //TODO remove test item
-            CurrentPlayer.Inventory.Add(ItemFactory.CreateItem(1001)); //TODO remove test item
         }
 
         // Movement methods use the player's CurrentRoom X and Y coordinates
@@ -69,7 +67,7 @@ namespace AdventureGame
 
         public void MoveSouth()
         {
-            if (HasLocationToNorth && CurrentPlayer.HasItemToEnter(CurrentRoom))
+            if (HasLocationToSouth && CurrentPlayer.HasItemToEnter(CurrentRoom))
             {
                 var oldRoom = CurrentRoom;
                 CurrentRoom = CurrentMap.RoomAt(CurrentRoom.XCoordinate, CurrentRoom.YCoordinate - 1);
@@ -100,5 +98,19 @@ namespace AdventureGame
         }
 
         //TODO add TakeGameEvent and take item logic here?
+        public void TakeItemFromRoom(Item item)
+        {
+            if (item.Moveable == true) 
+            {
+                // Doesn't really work this way:
+                //OnGameEvent?.Invoke(new TakeGameEvent(item));
+                CurrentRoom.RemoveItemFromRoomInventory(item);
+                CurrentPlayer.AddItemToInventory(item);
+            }
+            else
+            {
+                OnErrorAction?.Invoke("You can't take that item with you.");
+            }
+        }
     }
 }

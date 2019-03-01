@@ -20,14 +20,17 @@ namespace AdventureGame
         // TODO new List<EnemyEncounter>();
 
         public Room(int xCoordinate, int yCoordinate, string name, string description, 
-            Item itemRequiredToEnter, params Item[] RoomItems)
+            Item itemRequiredToEnter = null, params Item[] RoomItems)
         {
             XCoordinate = xCoordinate;
             YCoordinate = yCoordinate;
             Name = name;
             Description = description;
-            ItemRequiredToEnter = itemRequiredToEnter;
             RoomInventory = new List<Item>(RoomItems);
+            if (itemRequiredToEnter != null)
+            {
+                ItemRequiredToEnter = itemRequiredToEnter;
+            }
         }
 
         public void AddItemToRoomInventory(Item item)

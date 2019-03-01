@@ -13,6 +13,7 @@ namespace AdventureGame
     {
         private int _experiencePoints;
         private int _currentHitPoints;
+        private Room _currentRoom;
 
         public int ExperiencePoints
         {
@@ -23,6 +24,7 @@ namespace AdventureGame
                 UpdateLevelAndMaxHitPoints();
             }
         }
+
         public int CurrentHitPoints
         {
             get { return _currentHitPoints; }
@@ -39,14 +41,30 @@ namespace AdventureGame
             }
         }
 
+        public Room CurrentRoom
+        {
+            get { return _currentRoom; }
+            set
+            {
+                _currentRoom = value;
+
+                if (_currentRoom.Name == "Outside")
+                {
+                    // When the player's current room is Outside, the player object
+                    // will raise a PlayerKilled notification to all subscribed objects.
+                    OnPlayerWon();
+                }
+            }
+        }
+
         public string Name { get; set; } //TODO change back to private set later
         public int Level { get; private set; }
         public int MaxHitPoints { get; private set; }
-        public Room CurrentRoom { get; private set; }
         public CharacterClass CharacterClass { get; private set; } //TODO
         public List<Item> Inventory { get; set; } //TODO: Change back to private set later
 
         //public event EventHandler LeveledUp;
+        public event EventHandler PlayerWon;
         public event EventHandler PlayerKilled;
 
         //TODO: Passing in arguements for now, will have CharacterClass set starting values later
@@ -86,15 +104,17 @@ namespace AdventureGame
             CurrentHitPoints =- hitPointsDealt;
         }
 
+        //TODO add inventory limit and rules for adding items to inventory
         public void AddItemToInventory(Item item)
         {
             Inventory.Add(item);
-            Console.WriteLine("{0} item was added to your inventory.", item.Name); //TODO remove test
+            Console.WriteLine("{0} item was added to your inventory.", item.Name);
         }
 
         public void RemoveItemFromInventory(Item item)
         {
             Inventory.Remove(item);
+            Console.WriteLine("{0} item was removed from your inventory.", item.Name);
         }
 
         public bool HasItemToEnter(Room room)
@@ -113,6 +133,12 @@ namespace AdventureGame
         //    // If there are no subscribers, the LeveledUp EventHandler will be null
         //    LeveledUp?.Invoke(this, EventArgs.Empty);
         //}
+
+        private void OnPlayerWon()
+        {
+            // If there are no subscribers, the PlayerKilled EventHandler will be null
+            PlayerWon?.Invoke(this, EventArgs.Empty);
+        }
 
         private void OnPlayerKilled()
         {

@@ -1,21 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AdventureGame
 {
     public class Enemy
     {
-        public string Name { get; set; }
-        public int MaxDamage;
-        public int RewardExperiencePoints;
-        private int _hitPoints;
-        public int HitPoints
+        private int _currentHitPoints;
+        public int CurrentHitPoints
         {
-            get { return _hitPoints; }
+            get { return _currentHitPoints; }
             set
             {
-                _hitPoints = value;
+                _currentHitPoints = value;
 
-                if (_hitPoints <= 0)
+                if (_currentHitPoints <= 0)
                 {
                     // When the enemy's hit points are zero or less, the enemy object
                     // will raise a EnemyKilled notification to all subscribed objects.
@@ -23,14 +21,25 @@ namespace AdventureGame
                 }
             }
         }
+
+        public string Name { get; private set; }
+        public int MaxHitPoints { get; private set; }
+        public int MaxDamage { get; private set; }
+        public int RewardExperiencePoints { get; private set; }
+        //public int RewardGold { get; private set; } TODO later
+        public List<Item> Inventory { get; private set; }
         public event EventHandler EnemyKilled;
 
-        public Enemy(string name, int maxDamage, int rewardExperiencePoints, int hitPoints)
+        public Enemy(string name, int currentHitPoints, int maxHitPoints, 
+        int maxDamage, int rewardExperiencePoints)
         {
             Name = name;
+            CurrentHitPoints = currentHitPoints;
+            MaxHitPoints = maxHitPoints;
             MaxDamage = maxDamage;
             RewardExperiencePoints = rewardExperiencePoints;
-            HitPoints = hitPoints;
+
+            Inventory = new List<Item>();
         }
 
         private void OnEnemyKilled()

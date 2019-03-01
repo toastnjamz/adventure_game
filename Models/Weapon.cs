@@ -8,9 +8,9 @@ namespace AdventureGame
         public int MinDamage { get; set; }
         public int MaxDamage { get; set; }
 
-        public Weapon(int itemID, string name, string namePlural, string description, int quantity, 
-        int minDamage, int maxDamage)
-            : base(itemID, name, namePlural, description, quantity)
+        public Weapon(int itemID, string name, string namePlural, string description, 
+        int quantity, bool moveable, int minDamage, int maxDamage)
+            : base(itemID, name, namePlural, description, quantity, moveable)
         {
             MinDamage = minDamage;
             MaxDamage = maxDamage;
@@ -19,7 +19,8 @@ namespace AdventureGame
         // Lets the CreateItem function in the ItemCreator class make new instances of weapon items
         public new Weapon Clone()
         {
-            return new Weapon(ID, Name, NamePlural, Description, Quantity, MinDamage, MaxDamage);
+            return new Weapon(ID, Name, NamePlural, Description, Quantity, 
+            Moveable, MinDamage, MaxDamage);
         }
 
         //public void PerformAction(Player source, Enemy target)
