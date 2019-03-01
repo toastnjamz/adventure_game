@@ -34,6 +34,7 @@ namespace AdventureGame
 				{ Direction.WEST, _gameLogic.MoveWest }
 			};
 
+            CurrentPlayer.PlayerWon += HandlePlayerWon;
             CurrentPlayer.PlayerKilled += HandlePlayerKilled;
         }
 
@@ -115,18 +116,19 @@ namespace AdventureGame
             }
         }
 
+        // Takes the player's current stats and passes to the view to print
         private void HandleStatsInput(StatsInput input)
         {
             _view.DisplayPlayerStats(CurrentPlayer);
         }
 
+        // Verifies TakeInput item is an actual item in the room before passing to the rules engine for further verification
         private void HandleTakeInput(TakeInput input)
         {
             if (CurrentRoom.RoomInventory.Exists(x => x.Name == input.ItemName))
             {
                 Item targetItem = CurrentRoom.RoomInventory.First(x => x.Name == input.ItemName);
-                CurrentRoom.RemoveItemFromRoomInventory(targetItem);
-                CurrentPlayer.AddItemToInventory(targetItem);
+                _gameLogic.TakeItemFromRoom(targetItem);
             }
             else
             {
@@ -134,22 +136,25 @@ namespace AdventureGame
             }
         }
 
+        // The first way I tried HandleTakeInput without being properly encapsulated.
+        //private void HandleTakeInput(TakeInput input)
+        //{
+        //    if (CurrentRoom.RoomInventory.Exists(x => x.Name == input.ItemName))
+        //    {
+        //        Item targetItem = CurrentRoom.RoomInventory.First(x => x.Name == input.ItemName);
+        //        CurrentRoom.RemoveItemFromRoomInventory(targetItem);
+        //        CurrentPlayer.AddItemToInventory(targetItem);
+        //    }
+        //    else
+        //    {
+        //        _view.ShowError("That item doesn't exist here.");
+        //    }
+        //}
+
+        // Takes the player's current list of inventory items and passes to the view to print
         private void HandleInventoryInput(InventoryInput input)
         {
             _view.DisplayInventory(CurrentPlayer);
-        }
-
-        public Item DoesItemExistInRoom(string input)
-        {
-            if (CurrentRoom.RoomInventory.Exists(x => x.Name == input))
-            {
-                 return CurrentRoom.RoomInventory.FirstOrDefault(x => x.Name == input);
-            }
-            else
-            {
-                _view.ShowError("That item doesn't exist here.");
-                return null;
-            }
         }
 
         void OnGameEvent(GameEvent gameEvent)
@@ -160,6 +165,11 @@ namespace AdventureGame
         void OnError(string errorName)
         {
             _view.ShowError(errorName);
+        }
+
+        private void HandlePlayerWon(object sender, EventArgs eventArgs)
+        {
+            Console.WriteLine("You won! You live to cause dwarven debauchery another day.");
         }
 
         private void HandlePlayerKilled(object sender, EventArgs eventArgs)

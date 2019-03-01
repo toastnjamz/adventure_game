@@ -48,6 +48,9 @@ namespace AdventureGame
             DungeonCellItems[1] = ItemFactory.CreateItem(004);
             DungeonCellItems[2] = ItemFactory.CreateItem(006);
 
+            newMap.AddRoom(0, -2, "Outside", "the outdoors! You fill your lungs  " +
+                "with fresh air and thanks the gods you made it out of there alive.", 
+                null);
 
             newMap.AddRoom(-1, -1, "Secret Tunnel", "a small dirt tunnel large " +
             	"enough for a single person to walk through. It’s awfully dark.", 

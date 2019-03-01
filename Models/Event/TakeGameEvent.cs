@@ -1,5 +1,6 @@
 ﻿using System;
 
+// TODO: Potentially remove all together (may not need this event type)
 namespace AdventureGame
 {
     public class TakeGameEvent : GameEvent
@@ -9,6 +10,8 @@ namespace AdventureGame
         public TakeGameEvent(Item item)
         {
             Item = item;
+            //GameController.CurrentRoom.RemoveItemFromRoomInventory(item);
+            //GameController.CurrentPlayer.AddItemToInventory(item);
         }
     }
 }

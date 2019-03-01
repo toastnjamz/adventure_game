@@ -7,9 +7,9 @@ namespace AdventureGame
     {
         public int HitPointsOfHealing { get; set; }
 
-        public Consumable(int itemID, string name, string namePlural, string description, int quantity, 
-        int hitPointsOfHealing)
-            : base(itemID, name, namePlural, description, quantity)
+        public Consumable(int itemID, string name, string namePlural, string description, 
+        int quantity, bool moveable, int hitPointsOfHealing)
+            : base(itemID, name, namePlural, description, quantity, moveable)
         {
             HitPointsOfHealing = hitPointsOfHealing;
         }
@@ -17,7 +17,8 @@ namespace AdventureGame
         // Lets the CreateItem function in the ItemCreator class make new instances of consumable items
         public new Consumable Clone()
         {
-            return new Consumable(ID, Name, NamePlural, Description, Quantity, HitPointsOfHealing);
+            return new Consumable(ID, Name, NamePlural, Description, Quantity, 
+            Moveable, HitPointsOfHealing);
         }
 
         //public void PerformAction(Player source, Player target)

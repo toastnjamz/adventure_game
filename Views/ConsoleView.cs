@@ -94,6 +94,7 @@ namespace AdventureGame
         public void DescribeCurrentRoom(Room room)
         {
             Console.WriteLine("You're in " + room.Description);
+            //TODO add description of room exits
             if (room.RoomInventory.Count != 0)
             {
                 foreach (Item item in room.RoomInventory)
@@ -147,8 +148,8 @@ namespace AdventureGame
 		{
 			if (gameEvent is MoveGameEvent moveGameEvent)
 			{
-				Console.WriteLine("Player moved from " + moveGameEvent.OldRoom.Name + " to " + moveGameEvent.NewRoom.Name);
-				DescribeCurrentRoom(moveGameEvent.NewRoom);
+				Console.WriteLine("You moved from the " + moveGameEvent.OldRoom.Name + " to the " + moveGameEvent.NewRoom.Name);
+				//DescribeCurrentRoom(moveGameEvent.NewRoom);
 			}
             else if (gameEvent is TakeGameEvent takeGameEvent)
             {
