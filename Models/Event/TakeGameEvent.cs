@@ -1,6 +1,6 @@
 ﻿using System;
 
-// TODO: Potentially remove all together (may not need this event type)
+// TODO: Leave for later, but not necessary now with one form of take
 namespace AdventureGame
 {
     public class TakeGameEvent : GameEvent
