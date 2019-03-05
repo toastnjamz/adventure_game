@@ -10,45 +10,6 @@ namespace AdventureGame
 
     public static class ItemFactory
     {
-        // Attempt to create a dictionary of strings (to pick up later):
-        //private static Dictionary<string, List<Item>> _items;
-
-        //static ItemFactory()
-        //{
-        //    _items = new Dictionary<string, List<Item>>
-        //    {
-        //        _items.Add("Battle Axe", new Weapon(1001, "Battle Axe", "Battle Axes", "Tempered, trusty.", 1, 5, 2)),
-        //    };
-        //}
-
-        //private static Dictionary<string, Item> _items;
-
-        //static ItemFactory()
-        //{
-        //    Weapon BattleAxe = new Weapon(1001, "Battle Axe", "Battle Axes", "Tempered, trusty.", 1, 2, 5);
-        //    Weapon GreaterAxe = new Weapon(1002, "Greater Axe", "Greater Axes", "Sturdy and a little fancy.", 1, 5, 7);
-        //    Weapon LesserAxe = new Weapon(1003, "Lesser Axe", "Lesser Axes", "Not the best quality, but it'll do.", 1, 2, 3);
-        //    Weapon Parasol = new Weapon(1004, "Parasol", "Parasols", "Why tho.", 1, 1, 2);
-        //    Item DungeonDirt = new Item(001, "Dungeon Dirt", "Dungeon Dirt","Nothing special.", 1);
-        //    Item DeadRodent = new Item(002, "Dead Rodent of Usual Size", "Dead Rodents of Unusual Size", "Mmm, tasty.", 1);
-        //    Item TrollTooth = new Item(003, "Troll Tooth", "Troll Teeth", "Someone's missing this.", 1);
-        //    Item BallnChain = new Item(004, "Ball n' Chain", "Balls n' Chains", "The standard fare.", 1);
-        //    Item SkeletonKey = new Item(005, "Skeleton Key", "Skeleton Keys", "Looks like it opens something.", 1);
-
-        //    _items = new Dictionary<string, Item>
-        //    {
-        //        { BattleAxe.Name, BattleAxe },
-        //        { GreaterAxe.Name, GreaterAxe },
-        //        { LesserAxe.Name, LesserAxe },
-        //        { Parasol.Name, Parasol },
-        //        { DungeonDirt.Name, DungeonDirt },
-        //        { DeadRodent.Name, DeadRodent },
-        //        { TrollTooth.Name, TrollTooth },
-        //        { BallnChain.Name, BallnChain },
-        //        { SkeletonKey.Name, SkeletonKey }
-        //    };
-        //}
-
         private static List<Item> _itemsMasterList;
 
         static ItemFactory()

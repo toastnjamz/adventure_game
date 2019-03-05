@@ -62,10 +62,19 @@ namespace AdventureGame
         public int MaxHitPoints { get; private set; }
         public CharacterClass CharacterClass { get; private set; } //TODO
         public List<Item> Inventory { get; set; } //TODO: Change back to private set later
-
-        //public event EventHandler LeveledUp;
         public event EventHandler PlayerWon;
         public event EventHandler PlayerKilled;
+        public event EventHandler <PlayerLeveledUpEventArgs> PlayerLeveledUp;
+
+        public class PlayerLeveledUpEventArgs : EventArgs
+        {
+            public int Level { get; private set; }
+
+            public PlayerLeveledUpEventArgs(int level)
+            {
+                Level = level;
+            }
+        }
 
         //TODO: Passing in arguements for now, will have CharacterClass set starting values later
         public Player(string name, int currentHitPoints, int maxHitPoints, Room currentRoom)
@@ -90,7 +99,7 @@ namespace AdventureGame
             if (Level != originalLevel)
             {
                 MaxHitPoints = Level * 10;
-                //OnLeveledUp();
+                OnLeveledUp();
             }
         }
 
@@ -128,12 +137,6 @@ namespace AdventureGame
             return Inventory.Any(item => item.ID == room.ItemRequiredToEnter.ID);
         }
 
-        //private void OnLeveledUp()
-        //{
-        //    // If there are no subscribers, the LeveledUp EventHandler will be null
-        //    LeveledUp?.Invoke(this, EventArgs.Empty);
-        //}
-
         private void OnPlayerWon()
         {
             // If there are no subscribers, the PlayerKilled EventHandler will be null
@@ -144,6 +147,12 @@ namespace AdventureGame
         {
             // If there are no subscribers, the PlayerKilled EventHandler will be null
             PlayerKilled?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void OnLeveledUp()
+        {
+            // If there are no subscribers, the LeveledUp EventHandler will be null
+            PlayerLeveledUp?.Invoke(this, new PlayerLeveledUpEventArgs(Level));
         }
     }
 }

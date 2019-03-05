@@ -39,11 +39,15 @@ namespace AdventureGame
         // TODO refactor
         public void MoveNorth()
         {
-            if (HasLocationToNorth)
+            if (HasLocationToNorth && CurrentPlayer.HasItemToEnter(CurrentRoom))
             {
                 var oldRoom = CurrentRoom;
                 CurrentRoom = CurrentMap.RoomAt(CurrentRoom.XCoordinate, CurrentRoom.YCoordinate + 1);
                 OnGameEvent?.Invoke(new MoveGameEvent(oldRoom, CurrentRoom));
+            }
+            else if (CurrentPlayer.DoesNotHaveItemToEnter(CurrentRoom))
+            {
+                Console.WriteLine("You need a {0} to enter this location.", CurrentRoom.ItemRequiredToEnter);
             }
             else
             {
@@ -53,11 +57,15 @@ namespace AdventureGame
 
         public void MoveEast()
         {
-            if (HasLocationToEast)
+            if (HasLocationToEast && CurrentPlayer.HasItemToEnter(CurrentRoom))
             {
                 var oldRoom = CurrentRoom;
                 CurrentRoom = CurrentMap.RoomAt(CurrentRoom.XCoordinate + 1, CurrentRoom.YCoordinate);
                 OnGameEvent?.Invoke(new MoveGameEvent(oldRoom, CurrentRoom));
+            }
+            else if (CurrentPlayer.DoesNotHaveItemToEnter(CurrentRoom))
+            {
+                Console.WriteLine("You need a {0} to enter this location.", CurrentRoom.ItemRequiredToEnter);
             }
             else
             {
@@ -85,11 +93,15 @@ namespace AdventureGame
 
         public void MoveWest()
         {
-            if (HasLocationToWest)
+            if (HasLocationToWest && CurrentPlayer.HasItemToEnter(CurrentRoom))
             {
                 var oldRoom = CurrentRoom;
                 CurrentRoom = CurrentMap.RoomAt(CurrentRoom.XCoordinate - 1, CurrentRoom.YCoordinate);
                 OnGameEvent?.Invoke(new MoveGameEvent(oldRoom, CurrentRoom));
+            }
+            else if (CurrentPlayer.DoesNotHaveItemToEnter(CurrentRoom))
+            {
+                Console.WriteLine("You need a {0} to enter this location.", CurrentRoom.ItemRequiredToEnter);
             }
             else
             {
@@ -97,7 +109,7 @@ namespace AdventureGame
             }
         }
 
-        //TODO add TakeGameEvent and take item logic here?
+        //TODO use TakeGameEvent logic here when operation becomes more complex
         public void TakeItemFromRoom(Item item)
         {
             if (item.Moveable == true) 

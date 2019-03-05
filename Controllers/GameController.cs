@@ -36,9 +36,11 @@ namespace AdventureGame
 
             CurrentPlayer.PlayerWon += HandlePlayerWon;
             CurrentPlayer.PlayerKilled += HandlePlayerKilled;
-        }
+            CurrentPlayer.PlayerLeveledUp += HandlePlayerLeveledUp;
 
-        public void StartGame()
+    }
+
+    public void StartGame()
         {
             GameIntro.WriteAsciiTitle();
             GameIntro.IntroText();
@@ -78,7 +80,6 @@ namespace AdventureGame
                     break;
 
                 case InputType.EXIT:
-                    // I admit this is lazy. Assuming console output like this should go to the view?
                     Console.WriteLine("Beat it, geek!");
                     IsRunning = false;
                     break;
@@ -136,21 +137,6 @@ namespace AdventureGame
             }
         }
 
-        // The first way I tried HandleTakeInput without being properly encapsulated.
-        //private void HandleTakeInput(TakeInput input)
-        //{
-        //    if (CurrentRoom.RoomInventory.Exists(x => x.Name == input.ItemName))
-        //    {
-        //        Item targetItem = CurrentRoom.RoomInventory.First(x => x.Name == input.ItemName);
-        //        CurrentRoom.RemoveItemFromRoomInventory(targetItem);
-        //        CurrentPlayer.AddItemToInventory(targetItem);
-        //    }
-        //    else
-        //    {
-        //        _view.ShowError("That item doesn't exist here.");
-        //    }
-        //}
-
         // Takes the player's current list of inventory items and passes to the view to print
         private void HandleInventoryInput(InventoryInput input)
         {
@@ -175,6 +161,12 @@ namespace AdventureGame
         private void HandlePlayerKilled(object sender, EventArgs eventArgs)
         {
             Console.WriteLine("You died. Better luck next time.");
+        }
+
+        private void HandlePlayerLeveledUp(object sender, PlayerLeveledUpEventArgs eventArgs)
+        {
+            Console.WriteLine("Leveled up! You are now level {0}.", eventArgs.Level);
+            //Console.WriteLine("Leveled up!");
         }
     }
 }
