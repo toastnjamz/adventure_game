@@ -66,16 +66,6 @@ namespace AdventureGame
         public event EventHandler PlayerKilled;
         public event EventHandler <PlayerLeveledUpEventArgs> PlayerLeveledUp;
 
-        public class PlayerLeveledUpEventArgs : EventArgs
-        {
-            public int Level { get; private set; }
-
-            public PlayerLeveledUpEventArgs(int level)
-            {
-                Level = level;
-            }
-        }
-
         //TODO: Passing in arguements for now, will have CharacterClass set starting values later
         public Player(string name, int currentHitPoints, int maxHitPoints, Room currentRoom)
         {
@@ -99,7 +89,9 @@ namespace AdventureGame
             if (Level != originalLevel)
             {
                 MaxHitPoints = Level * 10;
-                OnLeveledUp();
+                PlayerLeveledUpEventArgs args = new PlayerLeveledUpEventArgs();
+                args.Level = Level;
+                OnLeveledUp(args);
             }
         }
 
@@ -137,22 +129,32 @@ namespace AdventureGame
             return Inventory.Any(item => item.ID == room.ItemRequiredToEnter.ID);
         }
 
-        private void OnPlayerWon()
+        protected virtual void OnPlayerWon()
         {
             // If there are no subscribers, the PlayerKilled EventHandler will be null
             PlayerWon?.Invoke(this, EventArgs.Empty);
         }
 
-        private void OnPlayerKilled()
+        protected virtual void OnPlayerKilled()
         {
             // If there are no subscribers, the PlayerKilled EventHandler will be null
             PlayerKilled?.Invoke(this, EventArgs.Empty);
         }
 
-        private void OnLeveledUp()
+        protected virtual void OnLeveledUp(PlayerLeveledUpEventArgs args)
         {
             // If there are no subscribers, the LeveledUp EventHandler will be null
-            PlayerLeveledUp?.Invoke(this, new PlayerLeveledUpEventArgs(Level));
+            PlayerLeveledUp?.Invoke(this, new PlayerLeveledUpEventArgs());
+        }
+
+        public class PlayerLeveledUpEventArgs : EventArgs
+        {
+            public int Level { get; set; }
+
+            //public PlayerLeveledUpEventArgs(int level)
+            //{
+            //    Level = level;
+            //}
         }
     }
 }
