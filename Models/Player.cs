@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace AdventureGame
 {
@@ -89,9 +88,10 @@ namespace AdventureGame
             if (Level != originalLevel)
             {
                 MaxHitPoints = Level * 10;
-                PlayerLeveledUpEventArgs args = new PlayerLeveledUpEventArgs();
-                args.Level = Level;
-                OnLeveledUp(args);
+                //PlayerLeveledUpEventArgs args = new PlayerLeveledUpEventArgs();
+                //args.Level = Level;
+                //OnLeveledUp(args);
+                OnLeveledUp();
             }
         }
 
@@ -141,20 +141,20 @@ namespace AdventureGame
             PlayerKilled?.Invoke(this, EventArgs.Empty);
         }
 
-        protected virtual void OnLeveledUp(PlayerLeveledUpEventArgs args)
+        protected virtual void OnLeveledUp()
         {
             // If there are no subscribers, the LeveledUp EventHandler will be null
-            PlayerLeveledUp?.Invoke(this, new PlayerLeveledUpEventArgs());
+            PlayerLeveledUp?.Invoke(this, new PlayerLeveledUpEventArgs(Level));
         }
 
         public class PlayerLeveledUpEventArgs : EventArgs
         {
-            public int Level { get; set; }
+            public int Level { get; private set; }
 
-            //public PlayerLeveledUpEventArgs(int level)
-            //{
-            //    Level = level;
-            //}
+            public PlayerLeveledUpEventArgs(int level)
+            {
+                Level = level;
+            }
         }
     }
 }
