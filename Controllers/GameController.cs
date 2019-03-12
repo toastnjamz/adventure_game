@@ -36,7 +36,7 @@ namespace AdventureGame
 
             CurrentPlayer.PlayerWon += HandlePlayerWon;
             CurrentPlayer.PlayerKilled += HandlePlayerKilled;
-            CurrentPlayer.PlayerLeveledUp += HandlePlayerLeveledUp;
+            //CurrentPlayer.PlayerLeveledUp += HandlePlayerLeveledUp;
 
     }
 
@@ -163,9 +163,9 @@ namespace AdventureGame
             Console.WriteLine("You died. Better luck next time.");
         }
 
-        private void HandlePlayerLeveledUp(object sender, PlayerLeveledUpEventArgs eventArgs)
-        {
-            Console.WriteLine("Leveled up! You are now level {0}.", eventArgs.Level);
-        }
+        //private void HandlePlayerLeveledUp(object sender, PlayerLeveledUpEventArgs eventArgs)
+        //{
+        //    Console.WriteLine("Leveled up! You are now level {0}.", eventArgs.Level);
+        //}
     }
 }

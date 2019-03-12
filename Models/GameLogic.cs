@@ -10,6 +10,7 @@ namespace AdventureGame
         public Map CurrentMap { get; private set; }
         public Room CurrentRoom { get; private set; }
         public Player CurrentPlayer { get; private set; }
+        public Enemy CurrentEnemy { get; private set; }
 
         public Action<string> OnErrorAction; //TODO
         public Action<GameEvent> OnGameEvent; //TODO
@@ -25,6 +26,8 @@ namespace AdventureGame
 
         public bool HasLocationToWest =>
             CurrentMap.RoomAt(CurrentRoom.XCoordinate - 1, CurrentRoom.YCoordinate) != null;
+
+        public bool HasEnemy => CurrentEnemy != null;
 
         //TODO does this really go here? Should it be in its own controller?
         public GameLogic()
@@ -109,7 +112,7 @@ namespace AdventureGame
             }
         }
 
-        //TODO use TakeGameEvent logic here when operation becomes more complex
+        //TODO (Later): Use TakeGameEvent logic here when operation becomes more complex
         public void TakeItemFromRoom(Item item)
         {
             if (item.Moveable == true) 
@@ -123,6 +126,11 @@ namespace AdventureGame
             {
                 OnErrorAction?.Invoke("You can't take that item with you.");
             }
+        }
+
+        private void GetEnemyAtLocation()
+        {
+            CurrentEnemy = CurrentRoom.GetEnemy();
         }
     }
 }

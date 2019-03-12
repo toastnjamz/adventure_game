@@ -60,6 +60,8 @@ namespace AdventureGame
             	"dungeon. It's blocked by a steel-reinforced floor-to-ceiling door.", 
                 null);
 
+            newMap.RoomAt(0, -1).AddEnemy(1, 100);
+
             newMap.AddRoom(1, -1, "Larder", "a room with cured meats and vegetables " +
             	"hanging on hooks. Sacks of grain line the back wall.", 
                 null, LarderItems);
@@ -73,10 +75,14 @@ namespace AdventureGame
             	"shadowy portraits on the walls.", 
                 null);
 
+            newMap.RoomAt(0, 0).AddEnemy(3, 100);
+
             newMap.AddRoom(1, 0, "Control Room", "a room with lots of levers " +
             	"attached to chains that run out of the room through holes in the wall. " +
             	"There’s a wooden shelf in the corner of the room.", 
                 null, ControlRoomItems);
+
+            newMap.RoomAt(1, 0).AddEnemy(2, 100);
 
             newMap.AddRoom(-1, 1, "Barracks", "a musty bunkbed-lined room with a " +
             	"table in the middle. The table's strewn with playing cards and tin cups.", 
@@ -85,6 +91,8 @@ namespace AdventureGame
             newMap.AddRoom(0, 1, "Cell Block", "a long hallway lined with cell " +
             	"blocks on either side. Each cell is locked with a heavy steel gate.", 
                 null, CellBlockItems);
+
+           newMap.RoomAt(0, 1).AddEnemy(1, 100);
 
             newMap.AddRoom(1, 1, "Armory", "a small room filled with racks of " +
             	"weapons and greasy pots.", 
