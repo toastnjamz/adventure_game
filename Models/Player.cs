@@ -63,7 +63,7 @@ namespace AdventureGame
         public List<Item> Inventory { get; set; } //TODO: Change back to private set later
         public event EventHandler PlayerWon;
         public event EventHandler PlayerKilled;
-        //public event EventHandler <PlayerLeveledUpEventArgs> PlayerLeveledUp;
+        public event EventHandler <PlayerLeveledUpEventArgs> PlayerLeveledUp;
 
         //TODO: Passing in arguements for now, will have CharacterClass set starting values later
         public Player(string name, int currentHitPoints, int maxHitPoints, Room currentRoom)
@@ -91,7 +91,7 @@ namespace AdventureGame
                 //PlayerLeveledUpEventArgs args = new PlayerLeveledUpEventArgs();
                 //args.Level = Level;
                 //OnLeveledUp(args);
-                //OnLeveledUp();
+                OnLeveledUp();
             }
         }
 
@@ -141,20 +141,20 @@ namespace AdventureGame
             PlayerKilled?.Invoke(this, EventArgs.Empty);
         }
 
-        //protected virtual void OnLeveledUp()
-        //{
-        //    // If there are no subscribers, the LeveledUp EventHandler will be null
-        //    PlayerLeveledUp?.Invoke(this, new PlayerLeveledUpEventArgs(Level));
-        //}
+        protected virtual void OnLeveledUp()
+        {
+            // If there are no subscribers, the LeveledUp EventHandler will be null
+            PlayerLeveledUp?.Invoke(this, new PlayerLeveledUpEventArgs(Level));
+        }
 
-        //public class PlayerLeveledUpEventArgs : EventArgs
-        //{
-        //    public int Level { get; private set; }
+        public class PlayerLeveledUpEventArgs : EventArgs
+        {
+            public int Level { get; private set; }
 
-        //    public PlayerLeveledUpEventArgs(int level)
-        //    {
-        //        Level = level;
-        //    }
-        //}
+            public PlayerLeveledUpEventArgs(int level)
+            {
+                Level = level;
+            }
+        }
     }
 }
