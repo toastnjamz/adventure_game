@@ -95,6 +95,17 @@ namespace AdventureGame
         {
             Console.WriteLine("You're in " + room.Description);
             //TODO add description of room exits
+
+
+            // Maybe use EnemyHere variable instead
+            if (room.EnemiesHere.Count != 0)
+            {
+                foreach (EnemyEncounter enemyEncounter in room.EnemiesHere)
+                {
+                    Console.WriteLine("There's a {0} in here!", enemy.Name);
+                }
+            }
+
             if (room.RoomInventory.Count != 0)
             {
                 foreach (Item item in room.RoomInventory)

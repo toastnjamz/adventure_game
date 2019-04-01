@@ -39,7 +39,7 @@ namespace AdventureGame
             CurrentPlayer.PlayerKilled += HandlePlayerKilled;
             CurrentPlayer.PlayerLeveledUp += HandlePlayerLeveledUp;
 
-    }
+        }
 
     public void StartGame()
         {
