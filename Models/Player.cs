@@ -109,7 +109,7 @@ namespace AdventureGame
         public void AddItemToInventory(Item item)
         {
             Inventory.Add(item);
-            Console.WriteLine("{0} item was added to your inventory.", item.Name);
+            Console.WriteLine("A {0} was added to your inventory.", item.Name);
         }
 
         public void RemoveItemFromInventory(Item item)

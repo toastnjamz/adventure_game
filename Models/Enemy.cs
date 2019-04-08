@@ -38,7 +38,6 @@ namespace AdventureGame
             MaxHitPoints = maxHitPoints;
             MaxDamage = maxDamage;
             RewardExperiencePoints = rewardExperiencePoints;
-
             Inventory = new List<Item>();
         }
 

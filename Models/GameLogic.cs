@@ -27,9 +27,6 @@ namespace AdventureGame
         public bool HasLocationToWest =>
             CurrentMap.RoomAt(CurrentRoom.XCoordinate - 1, CurrentRoom.YCoordinate) != null;
 
-        // Might not need this:
-        //public bool HasEnemy => CurrentEnemy != null;
-
         //TODO does this really go here? Should it be in its own controller?
         public GameLogic()
         {

@@ -96,21 +96,20 @@ namespace AdventureGame
             Console.WriteLine("You're in " + room.Description);
             //TODO add description of room exits
 
-
             // Maybe use EnemyHere variable instead
-            if (room.EnemiesHere.Count != 0)
-            {
-                foreach (EnemyEncounter enemyEncounter in room.EnemiesHere)
-                {
-                    Console.WriteLine("There's a {0} in here!", enemy.Name);
-                }
-            }
+            //if (room.EnemiesHere.Count != 0)
+            //{
+            //    foreach (EnemyEncounter enemyEncounter in room.EnemiesHere)
+            //    {
+            //        Console.WriteLine("Gasp! There's a {0} in here!", enemy.Name);
+            //    }
+            //}
 
             if (room.RoomInventory.Count != 0)
             {
                 foreach (Item item in room.RoomInventory)
                 {
-                    Console.WriteLine("You see {0}.", item.Name);
+                    Console.WriteLine("You see a {0}.", item.Name);
                     //TODO Use different string for one or multiple items: "You also see a..."
                 }
             }
@@ -160,12 +159,13 @@ namespace AdventureGame
 			if (gameEvent is MoveGameEvent moveGameEvent)
 			{
 				Console.WriteLine("You moved from the " + moveGameEvent.OldRoom.Name + " to the " + moveGameEvent.NewRoom.Name);
-				//DescribeCurrentRoom(moveGameEvent.NewRoom);
+				DescribeCurrentRoom(moveGameEvent.NewRoom);
 			}
-            else if (gameEvent is TakeGameEvent takeGameEvent)
-            {
-                Console.WriteLine("You've added a {0} to your inventory.", takeGameEvent.Item);
-            }
+            // Not using TakeGameEvent now, since there's only one type of take
+            //else if (gameEvent is TakeGameEvent takeGameEvent)
+            //{
+            //    Console.WriteLine("You've added a {0} to your inventory.", takeGameEvent.Item);
+            //}
             // else TODO: add display results for other games events
         }
 

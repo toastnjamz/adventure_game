@@ -99,7 +99,7 @@ namespace AdventureGame
                 null, ArmoryItems);
 
             newMap.AddRoom(0, 2, "Dungeon Cell", "a dirt-floored cell spattered " +
-            	"with blood stains and the decayed remains various severed digits.", 
+            	"with blood stains and the decayed remains of various severed digits.", 
                 null, DungeonCellItems);
 
             return newMap;

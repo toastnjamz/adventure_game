@@ -1,6 +1,6 @@
 ﻿using System;
 
-// TODO: Leave for later, but not necessary now with one form of take
+// TODO: Leaving for later - not necessary now with one form of take
 namespace AdventureGame
 {
     public class TakeGameEvent : GameEvent
