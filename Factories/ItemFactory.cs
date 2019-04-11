@@ -38,7 +38,7 @@ namespace AdventureGame
                 new Consumable(2004, "Kozy Shack Pudding", "Kozy Shack Pudding", "Only the best in this dungeon!", 1, true, 3),
                 new Consumable(2005, "Vial of Gold Liquid", "Vials of Gold Liquid", "What could it be!", 1, true, 50),
                 new Consumable(2006, "Jug of Cider", "Jugs of Cider", "The booze of choice in these here parts.", 1, true, -2),
-                new Weapon(9001, "Lesser Sword", "Lesser Swords", "A simple defensive weapon.", 1, true, 2, 3),
+                new Weapon(1007, "Lesser Sword", "Lesser Swords", "A simple defensive weapon.", 1, true, 2, 3),
                 new Item(9002, "Bar of Soap", "Bars of Soap", "Guess he dropped it.", 1, true),
                 new Item(9003, "Rodent Fur", "Rodent Furs", "Looks like it had the mange.", 1, true),
                 new Item(9004, "Rodent Tail", "Rodent Tails", "It's of unusually large size.", 1, true),
