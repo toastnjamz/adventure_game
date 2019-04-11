@@ -5,7 +5,7 @@ namespace AdventureGame
 {
     /// <summary>
     /// A weighted edge undirected graph of player inventory items.
-    /// Items are related by edges, and import of relation is indicated by weight.
+    /// Items are related by edges, and value of pairing is indicated by weight.
     /// Using an adjacency-list representation of relationships between items. 
     /// </summary>
 
